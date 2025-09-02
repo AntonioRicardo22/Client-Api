@@ -1,14 +1,17 @@
 package com.neoapp.cliente_api.controller.commonExceptions;
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import jakarta.validation.ConstraintViolationException;
 import org.postgresql.util.PSQLException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,5 +54,22 @@ public class globalExceptionsHandler {
         String errorMessage = exception.getConstraintViolations().iterator().next().getMessage();
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
 
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Map<String, String>> handleHttpMessageNotReadable(HttpMessageNotReadableException ex) {
+        Map<String, String> errors = new HashMap<>();
+        // Verifica se a exceção é por um erro de formatação de data
+        if (ex.getCause() instanceof InvalidFormatException) {
+            InvalidFormatException ife = (InvalidFormatException) ex.getCause();
+            if (ife.getTargetType() != null && LocalDate.class.isAssignableFrom(ife.getTargetType())) {
+                String mensagem = "Formato de data inválido. Use o padrão yyyy-MM-dd.";
+                errors.put("birthDate", mensagem);
+            }
+        }
+        if (errors.isEmpty()) {
+            errors.put("erro", "Corpo da requisição inválido.");
+        }
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 }

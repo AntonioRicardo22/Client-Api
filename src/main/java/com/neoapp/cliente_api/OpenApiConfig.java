@@ -15,28 +15,19 @@ import java.util.List;
 @Configuration
 public class OpenApiConfig {
 
-    @Bean
-    public OpenAPI customerApiOpenAPI() {
-        Info info = new Info()
-                .title("Cliente API - NeoApp")
-                .description("REST API para cadastro e gestão de clientes pessoa física, incluindo endereço e filtros de busca.")
-                .version("v1")
-                .license(new License().name("MIT").url("https://opensource.org/licenses/MIT"))
-                .contact(new Contact()
-                        .name("NeoApp")
-                        .email("contato@neoapp.example")
-                        .url("https://neoapp.example"));
+        @Bean
+        public OpenAPI customerApiOpenAPI() {
+                Info info = new Info().title("Cliente API - NeoApp").description(
+                                "REST API para cadastro e gestão de clientes pessoa física, incluindo endereço e filtros de busca.")
+                                .version("v1")
+                                .license(new License().name("MIT").url("https://opensource.org/licenses/MIT"))
+                                .contact(new Contact().name("NeoApp").email("contato@neoapp.example")
+                                                .url("https://neoapp.example"));
 
-        Server local = new Server().url("http://localhost:8080").description("Ambiente local");
+                Server local = new Server().url("http://localhost:8080").description("Ambiente local");
 
-        return new OpenAPI()
-                .info(info)
-                .servers(List.of(local))
-                .components(new Components())
-                .externalDocs(new ExternalDocumentation()
-                        .description("Documentação adicional")
-                        .url("https://neoapp.example/docs"));
-    }
+                return new OpenAPI().info(info).servers(List.of(local)).components(new Components())
+                                .externalDocs(new ExternalDocumentation().description("Documentação adicional")
+                                                .url("https://neoapp.example/docs"));
+        }
 }
-
-
