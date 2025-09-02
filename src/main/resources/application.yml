@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: cliente-api
+
+  datasource:
+      url: jdbc:postgresql://localhost:5432/neoappdb
+      username: neoapp
+      password: neoapp
+      driver-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  messages:
+    basename: validationMessages.yml
