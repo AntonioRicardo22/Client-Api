@@ -37,7 +37,7 @@ public class Client {
     @LastModifiedDate
     private LocalDateTime dateUpdate;
 
-    @OneToOne(cascade = CascadeType.ALL , orphanRemoval = true )
-    @JoinColumn(name = "address_id" , referencedColumnName = "id")
-    private  Address address;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 }
