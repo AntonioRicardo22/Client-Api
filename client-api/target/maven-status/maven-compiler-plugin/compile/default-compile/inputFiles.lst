@@ -1,0 +1,5 @@
+/workspace/client-api/src/main/java/com/example/clientapi/ClientApiApplication.java
+/workspace/client-api/src/main/java/com/example/clientapi/client/Client.java
+/workspace/client-api/src/main/java/com/example/clientapi/client/ClientController.java
+/workspace/client-api/src/main/java/com/example/clientapi/client/ClientRepository.java
+/workspace/client-api/src/main/java/com/example/clientapi/client/ClientService.java

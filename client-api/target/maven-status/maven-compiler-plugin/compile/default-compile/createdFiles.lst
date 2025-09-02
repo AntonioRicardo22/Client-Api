@@ -1,0 +1,6 @@
+com/example/clientapi/ClientApiApplication.class
+com/example/clientapi/client/Client$ClientBuilder.class
+com/example/clientapi/client/ClientService.class
+com/example/clientapi/client/Client.class
+com/example/clientapi/client/ClientController.class
+com/example/clientapi/client/ClientRepository.class
